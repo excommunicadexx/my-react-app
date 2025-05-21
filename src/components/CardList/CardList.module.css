@@ -1,0 +1,13 @@
+.features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-top: 40px;
+}
+
+.status {
+  text-align: center;
+  margin: 40px 0;
+  font-size: 1.2rem;
+  color: #007BFF;
+} 

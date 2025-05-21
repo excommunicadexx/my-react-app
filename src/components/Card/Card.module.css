@@ -1,0 +1,25 @@
+.feature {
+  margin: 20px;
+  width: calc(33.33% - 40px);
+  text-align: left;
+}
+
+.thickLine {
+  border: none;
+  height: 5px;
+  background-color: #007BFF;
+  margin: 10px 0;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+}
+
+.feature:hover .thickLine {
+  background-color: #0056b3;
+}
+
+.featureImg {
+  width: 100%;
+  max-width: 120px;
+  margin-bottom: 12px;
+} 

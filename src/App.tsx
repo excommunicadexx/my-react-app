@@ -1,82 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
-import './assets/styles/global.css';
-
-const sliderImages = [
-  '/img/1.jpg',
-  '/img/2.jpg',
-  '/img/3.jpg',
-];
+import Layout from './components/Layout/Layout';
+import CardList from './components/CardList/CardList';
+import SliderSection from './components/SliderSection/SliderSection';
 
 function App() {
-  // Слайдер
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const slideInterval = useRef<number | null>(null);
-
-  useEffect(() => {
-    slideInterval.current = window.setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-    }, 3000);
-    return () => {
-      if (slideInterval.current) clearInterval(slideInterval.current);
-    };
-  }, []);
-
-  // Комментарии (features)
-  const [features, setFeatures] = useState<{card_name: string, card_text: string}[]>([]);
-  useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/comments?_limit=3')
-      .then(res => res.json())
-      .then(json => {
-        setFeatures(json.map((comment: any) => ({
-          card_name: `Комментарий от ${comment.name}`,
-          card_text: comment.body
-        })));
-      });
-  }, []);
-
-  // Модальные окна
-  const [showSignUp, setShowSignUp] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-
   return (
-    <>
-      <Header onSignUp={() => setShowSignUp(true)} onLogin={() => setShowLogin(true)} />
-      {/* Sign Up Modal */}
-      {showSignUp && (
-        <div className="modal" onClick={e => { if (e.target === e.currentTarget) setShowSignUp(false); }}>
-          <div className="modal-content">
-            <span className="close" onClick={() => setShowSignUp(false)}>&times;</span>
-            <h2>Регистрация</h2>
-            <form id="signupForm" onSubmit={e => { e.preventDefault(); alert('Регистрация успешно выполнена!'); setShowSignUp(false); }}>
-              <label htmlFor="username">Имя пользователя:</label>
-              <input type="text" id="username" name="username" required />
-              <label htmlFor="email">Электронная почта:</label>
-              <input type="email" id="email" name="email" required />
-              <label htmlFor="password">Пароль:</label>
-              <input type="password" id="password" name="password" required />
-              <button className="buttonokno" type="submit">Зарегистрироваться</button>
-            </form>
-          </div>
-        </div>
-      )}
-      {/* Login Modal */}
-      {showLogin && (
-        <div className="modal" onClick={e => { if (e.target === e.currentTarget) setShowLogin(false); }}>
-          <div className="modal-content">
-            <span className="close" onClick={() => setShowLogin(false)}>&times;</span>
-            <h2>Вход</h2>
-            <form id="loginForm" onSubmit={e => { e.preventDefault(); alert('Вход выполнен успешно!'); setShowLogin(false); }}>
-              <label htmlFor="loginUsername">Имя пользователя:</label>
-              <input type="text" id="loginUsername" name="loginUsername" required />
-              <label htmlFor="loginPassword">Пароль:</label>
-              <input type="password" id="loginPassword" name="loginPassword" required />
-              <button className="buttonokno" type="submit">Войти</button>
-            </form>
-          </div>
-        </div>
-      )}
+    <Layout>
       <main>
         {/* Hero Section */}
         <section className="hero">
@@ -88,18 +16,7 @@ function App() {
           </div>
         </section>
         {/* Slider Section */}
-        <section className="bloktem">
-          <div className="slider">
-            {sliderImages.map((src, idx) => (
-              <img
-                key={src}
-                src={src}
-                alt={`Image ${idx + 1}`}
-                className={`hero-image${idx === currentSlide ? ' active' : ''}`}
-              />
-            ))}
-          </div>
-        </section>
+        <SliderSection />
         {/* Quote Section */}
         <section className="quote">
           <div className="container">
@@ -121,15 +38,8 @@ function App() {
           <div className="container">
             <h1>Everything you want to know in one place.</h1>
             <img id="infoImage" src="/img/professional-profile.png" alt="Info Image" className="info-image" />
-            <div className="features" id="features-container">
-              {features.map((f, idx) => (
-                <div className="feature" key={idx}>
-                  <hr className="thick-line" />
-                  <h3>{f.card_name}</h3>
-                  <p>{f.card_text}</p>
-                </div>
-              ))}
-            </div>
+            {/* Вот здесь теперь CardList */}
+            <CardList />
           </div>
         </section>
         {/* Connect Section */}
@@ -142,19 +52,18 @@ function App() {
             </div>
           </div>
         </section>
-        {/* CTA Section */}
-        <section className="cta">
-          <div className="container">
-            <div className="text-container">
-              <h1>Set up your profile.<br />Let jobs find you.</h1>
-              <button className="cta-button">Join Now</button>
+        {/* CTA Section (размер внизу перед футером) */}
+        <section className="cta" style={{ backgroundColor: '#000', color: '#fff', padding: '60px 0', marginTop: '40px' }}>
+          <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div className="text-container" style={{ maxWidth: '400px' }}>
+              <h1 style={{ fontSize: '40px', marginBottom: '10px' }}>Set up your profile.<br />Let jobs find you.</h1>
+              <button className="cta-button" style={{ backgroundColor: '#3D1EDD', color: '#fff', padding: '10px 20px', border: 'none', cursor: 'pointer', marginTop: '20px' }}>Join Now</button>
             </div>
-            <img src="/img/job-image.png" alt="Job Image" className="cta-image" />
+            <img src="/img/job-image.png" alt="Job Image" className="cta-image" style={{ maxWidth: '100%', height: 'auto' }} />
           </div>
         </section>
       </main>
-      <Footer />
-    </>
+    </Layout>
   );
 }
 

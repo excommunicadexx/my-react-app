@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LoginForm = () => (
   <form id="loginForm">
     <label htmlFor="loginUsername">Имя пользователя:</label>

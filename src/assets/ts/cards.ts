@@ -40,7 +40,7 @@ function generateCards(cards: CardData[]): void {
 fetch('https://jsonplaceholder.typicode.com/comments?_limit=3')
   .then(response => response.json())
   .then((json: any[]) => {
-    const cards: CardData[] = json.map((comment, index) => ({
+    const cards: CardData[] = json.map((comment) => ({
       card_name: `Комментарий от ${comment.name}`,
       card_text: comment.body,
       // image: можно добавить, если появится поле

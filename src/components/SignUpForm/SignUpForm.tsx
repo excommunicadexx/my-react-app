@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SignUpForm = () => (
   <form id="signupForm">
     <label htmlFor="username">Имя пользователя:</label>
