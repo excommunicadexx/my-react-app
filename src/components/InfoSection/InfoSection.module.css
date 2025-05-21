@@ -1,0 +1,25 @@
+.info {
+  padding: 60px 0;
+  text-align: center;
+}
+.info h1 {
+  margin-bottom: 20px;
+}
+.infoImage {
+  width: 100%;
+  margin: 30px auto;
+}
+.features {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+}
+.feature {
+  width: 30%;
+  text-align: left;
+}
+.featureImg {
+  width: 100%;
+  max-width: 120px;
+  margin-bottom: 12px;
+} 

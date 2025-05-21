@@ -1,0 +1,25 @@
+.quote {
+  background-color: #f1f1f1;
+  padding: 40px 0;
+  text-align: center;
+}
+.images {
+  align-items: center;
+  margin-top: 50px;
+}
+.imgDop1 {
+  width: 70px;
+  margin-left: -300px;
+}
+.imgDop2 {
+  width: 70px;
+  margin-left: 210px;
+}
+.author {
+  margin-top: 20px;
+}
+.quote blockquote {
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+} 

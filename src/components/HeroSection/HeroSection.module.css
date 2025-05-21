@@ -1,0 +1,29 @@
+.hero {
+  text-align: center;
+  margin-bottom: 10%;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+.hero h4 {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+.buttonjoin {
+  background-color: #3D1EDD;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.buttonjoin:hover {
+  background-color: #2a13a3;
+}
+.hero p {
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+} 
