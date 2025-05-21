@@ -8,13 +8,17 @@ interface CardData {
   body: string;
 }
 
-const CardList = () => {
+interface CardListProps {
+  limit?: number;
+}
+
+const CardList = ({ limit = 3 }: CardListProps) => {
   const [cards, setCards] = useState<CardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/posts?_limit=3')
+    fetch(`https://jsonplaceholder.typicode.com/posts?_limit=${limit}`)
       .then(response => {
         if (!response.ok) throw new Error('Ошибка загрузки данных');
         return response.json();
@@ -27,7 +31,7 @@ const CardList = () => {
         setError(err.message);
         setLoading(false);
       });
-  }, []);
+  }, [limit]);
 
   if (loading) return <div className={styles.status}>Загрузка...</div>;
   if (error) return <div className={styles.status}>Ошибка: {error}</div>;
