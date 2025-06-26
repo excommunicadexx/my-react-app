@@ -3,9 +3,9 @@ import Footer from '../Footer/Footer';
 import Preloader from '../Preloader/Preloader';
 import Modal from '../Modal/Modal';
 import styles from './Layout.module.css';
+import { Outlet } from 'react-router-dom';
 
 type LayoutProps = {
-  children: React.ReactNode;
   showPreloader?: boolean;
   showSignUp?: boolean;
   showLogin?: boolean;
@@ -17,11 +17,11 @@ type LayoutProps = {
   onLogin?: () => void;
 };
 
-const Layout = ({ children, showPreloader, showSignUp, showLogin, onCloseSignUp, onCloseLogin, signUpForm, loginForm, onSignUp, onLogin }: LayoutProps) => (
+const Layout = ({ showPreloader, showSignUp, showLogin, onCloseSignUp, onCloseLogin, signUpForm, loginForm, onSignUp, onLogin }: LayoutProps) => (
   <div className={styles.layout}>
     {showPreloader && <Preloader />}
     <Header onSignUp={onSignUp || (() => {})} onLogin={onLogin || (() => {})} />
-    <main className={styles.main}>{children}</main>
+    <main className={styles.main}><Outlet /></main>
     <Footer />
     <Modal isOpen={!!showSignUp} onClose={onCloseSignUp || (() => {})}>
       {signUpForm || null}

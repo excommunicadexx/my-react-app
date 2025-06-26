@@ -8,13 +8,13 @@ import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/cards" element={<CardsPage />} />
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<HomePage />} />
+        <Route path="cards" element={<CardsPage />} />
         <Route path="*" element={<NotFoundPage />} />
-      </Routes>
-    </Layout>
+      </Route>
+    </Routes>
   );
 }
 
